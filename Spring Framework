@@ -18,4 +18,41 @@
   			@Configuration 
    			@ComponentScan(basePackages = { "com.mastering.spring" }) 
     		class SpringContext {}
- 	
+ # 4. Unit testing with mocks
+ 	    -> what mocking is ?   =>  Mocking is creating objects that simulate the behavior of real objects. 
+ 	    							(Unlike stubs, mocks can be dynamically created at runtime).
+ 	    -> The most popular mocking framework :  Mockito (https://github.com/mockito/mockito/wiki/FAQ)
+ 	    										 Referance book : Growing Object-Oriented Software, Guided by Tests.
+
+# 5. Dependency injection types
+	   -> There are two types of dependency injections that are used frequently :
+	   	    1 . The setter injection
+	   	    	  	Actually, in order to use the setter injection, you do not even need to declare a setter method.
+	   	    	  	 If you specify @Autowired on the variable, Spring automatically uses the setter injection.
+			2.  The constructor injection
+	   -> Constructor versus setter injection
+	        1. Originally, in XML-based application contexts, we used the constructor injection with mandatory dependencies 
+	        	and the setter injection with nonmandatory dependencies.
+	   		-> However, an important thing to note is that when we use @Autowired on a field or a method, 
+	   			the dependency is required by default. If no candidates are available 
+	   			for an @Autowired field, autowiring fails and throws an exception. 
+	   			So, the choice is not so clear anymore with Java application contexts.
+	       
+	       -> Using the setter injection results in the state of the object changing during the creation. 
+	       	  For fans of immutable objects, the constructor injection might be the way to go. 
+	       	  Using the setter injection might sometimes hide the fact that a class has a lot of dependencies,wherase   
+	       	  Using the constructor injection makes it obvious, since the size of the constructor increases.
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
