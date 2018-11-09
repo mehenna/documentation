@@ -1,0 +1,21 @@
+# 1. Creating a Spring IoC container 
+		There are two ways to create a Spring IoC container:
+			1. Bean factory 		=> Spring recommends  in the additional few KBs of memory that the application context consumes are critical.
+			2. Application context  => Spring recommends that you use the application context in all scenarios
+			
+		-> Bean factory is the basis for all Spring IoC functionality
+		  |-> bean life cycle and wiring. Application context is basically a superset
+		  |	  of Bean factory with the additional functionality.
+		  
+# 2. Java configuration for the application context
+		-> The following example shows how to create a simple Java context configuration:
+				@Configuration 
+    			class SpringContext {  }
+    		-> The key is the @Configuration annotation. This is what defines this as a Spring configuration.
+ 
+ # 3. How does Spring IoC container know where to search for beans?
+  	-> We need to tell the Spring IoC container the packages to search for by defining a component scan. 	
+  			@Configuration 
+   			@ComponentScan(basePackages = { "com.mastering.spring" }) 
+    		class SpringContext {}
+ 	
