@@ -24,7 +24,7 @@
  	    -> The most popular mocking framework :  Mockito (https://github.com/mockito/mockito/wiki/FAQ)
  	    										 Referance book : Growing Object-Oriented Software, Guided by Tests.
 
-# 5. Dependency injection types
+# 5. Dependency injection by types
 	   -> There are two types of dependency injections that are used frequently :
 	   	    1 . The setter injection
 	   	    	  	Actually, in order to use the setter injection, you do not even need to declare a setter method.
@@ -32,7 +32,7 @@
 			2.  The constructor injection
 	   -> Constructor versus setter injection
 	        1. Originally, in XML-based application contexts, we used the constructor injection with mandatory dependencies 
-	        	and the setter injection with nonmandatory dependencies.
+	        	and the setter injection with non-mandatory dependencies.
 	   		-> However, an important thing to note is that when we use @Autowired on a field or a method, 
 	   			the dependency is required by default. If no candidates are available 
 	   			for an @Autowired field, autowiring fails and throws an exception. 
@@ -43,14 +43,51 @@
 	       	  Using the setter injection might sometimes hide the fact that a class has a lot of dependencies,wherase   
 	       	  Using the constructor injection makes it obvious, since the size of the constructor increases.
 	   
+# 6. Spring bean scopes	 
+		-> Spring beans can be created with multiple scopes. The default scope is a singleton.
+				Since there is only one instance of a singleton bean, it cannot contain any data that is specific to a request.
+		-> The scope can be provided with the @Scope annotation on any spring bean:
+		|---------------------------------------------------------------------------------------------|
+		|Scope   		|     Use																	  |
+		|---------------------------------------------------------------------------------------------|
+		|Singleton      |  -> It is important to specify that the Spring singleton 					  |
+		|				|	   scope is one object per one Spring container.						  |
+		|               |  -> If you have multiple spring containers in a single JVM, 				  |
+		|				|   	  then there can be multiple instances of the same bean.	 		  |
+		|---------------------------------------------------------------------------------------------|
+		|Prototype      | -> A new instance is created every time a bean 							  | 
+		|				|	  is requested from the Spring container								  |
+		|				|	 Ex :    If a bean contains a state, it is recommended 					  |
+		|				|		that you use the prototype scope for it. 							  |
+		|---------------------------------------------------------------------------------------------|
+		|request        | ->  Available only in Spring web contexts. 								  |
+		|				|	  A new instance of bean is created for every HTTP request 				  |
+		|				|	 Ex :    Ideal for beans that hold data specific to a single request.	  |
+		|---------------------------------------------------------------------------------------------|
+		|session        | -> Available only in Spring web contexts. 								  |
+		|				|	 A new instance of bean is created for every HTTP session.				  |
+		|				|	 Ex :   Permissions in a web application.						 		  |
+		|---------------------------------------------------------------------------------------------|
+		|Application    | -> Available only in Spring web contexts. 								  |
+		|				|		One instance of bean per web application.							  |
+		|				|	 Ex :   Application configuration for a specific environment.             | 
+		|---------------------------------------------------------------------------------------------|
+
+	 
+# 7. The @Autowired annotation in depth   
+	   -> When @Autowired is used on a dependency, the application context searches for a matching dependency. 
+	   		By default, all dependencies that are autowired are required.
+	    	=> Possible results are as follows:
+	    		1. One match is found: This is the dependency you are looking for
+	    		2. More than one match is found: Autowiring fails
+	   			3. No match is found: Autowiring fails
+	   			
+	   		=> Cases where more than one candidate is found can be resolved in two ways:
 	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
+	   			1. Use the @Primary annotation to mark one of the candidates as the one to be used	
+	   					->  @Primary   is used on a bean
+	   			2. Use @Qualifier to further qualify autowiring
+	   					-> The @Qualifier annotation can be used to give a reference to a Spring bean.
 	   
 	   
 	   
